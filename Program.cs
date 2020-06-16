@@ -6,7 +6,7 @@ namespace Projekt_MarcinGalica
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
         }
     }
 }
