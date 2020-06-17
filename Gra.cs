@@ -49,7 +49,9 @@ namespace Projekt_MarcinGalica
             //sprawdzam czy graczem jest komputer
             if(NazwaGracza != "komputer")
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Tura: " + NazwaGracza);
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Podaj miejsce w którym chcesz postawic symbol:");
                 Console.Write("Podaj rzad: ");
                 int.TryParse(Console.ReadLine().Trim(), out rzad);
@@ -68,6 +70,7 @@ namespace Projekt_MarcinGalica
             {
                 if(NazwaGracza != "komputer")
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Podane kordy są nie poprawne.");
                     Console.WriteLine("Podaj miejsce w którym chcesz postawic symbol:");
                     Console.Write("Podaj rzad: ");
@@ -92,16 +95,27 @@ namespace Projekt_MarcinGalica
             {
                 if(NazwaGracza == ("komputer"))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Komputer wygrał!!!");
+                    Console.ResetColor();
+                    Console.WriteLine("ESC - Wróć do Menu");
+                    Console.WriteLine("F1 - Nowa tura skonczona");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Gratulacje "+ NazwaGracza +" udało ci się wygrać!!!");
+                    Console.ResetColor();
+                    Console.WriteLine("ESC - Wróć do Menu");
+                    Console.WriteLine("F1 - Nowa tura skonczona");
                 }
                 return true;
             }else if (remis())
             {
                 Console.WriteLine("!!!REMIS!!!");
+                Console.ResetColor();
+                Console.WriteLine("ESC - Wróć do Menu");
+                Console.WriteLine("F1 - Nowa tura skonczona");
                 return true;
             }
             return false;
@@ -187,11 +201,15 @@ namespace Projekt_MarcinGalica
         }
         private static void pokazPlansze()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("  | 1  2  3 ");
             Console.WriteLine("------------");
+            Console.ForegroundColor = ConsoleColor.White;
             for (int rzad = 0; rzad < 3; rzad++)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write((rzad + 1).ToString() + " |");
+                Console.ForegroundColor = ConsoleColor.White;
                 for (int kolumna = 0; kolumna < 3; kolumna++)
                 {
                     switch (plansza[rzad, kolumna])
