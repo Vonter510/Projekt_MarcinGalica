@@ -5,32 +5,37 @@ namespace Projekt_MarcinGalica
     class Program
     {
         static void Main(string[] args)
-        {
+        {   
             string nazwaGracza = "";
-            bool gameOver = false;
+            bool CzyGraSkonczona = false;
 
             Console.Write("Podaj nazwe Gracza 1:");
             nazwaGracza = Console.ReadLine();
-            Gra gracz1 = new Gra(1, nazwaGracza);
+            Gra gracz1 = new Gra("X", nazwaGracza);
             Console.WriteLine("Podaj nzwe Gracza 2: !Napisz 'komputer' jeśli chcesz grać przeciwko komputerowi!");
             nazwaGracza = Console.ReadLine();
-            Gra gracz2 = new Gra(2, nazwaGracza);
+            Gra gracz2 = new Gra("O", nazwaGracza);
 
-            while (!gameOver)
+
+            while (!CzyGraSkonczona)
             {
                 Gra.inicjacjaPlanszy();
                 while(!gracz1.PrzebiegGry() && !gracz2.PrzebiegGry())
                 {
-                    gameOver = true;
+                    CzyGraSkonczona = true;
                 }
-                if (gameOver)
+                if (CzyGraSkonczona)
                 {
-                    Console.WriteLine("Chcesz zagracz ponownie?");
                     if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                     {
                         Console.WriteLine("Gra skończona");
+                    } else if (Console.ReadKey(true).Key == ConsoleKey.F1)
+                    {
+                        CzyGraSkonczona = false;
+                    } else
+                    {
+                        CzyGraSkonczona = false;
                     }
-                    else gameOver = false;
                 }
             }
             Console.ReadLine();

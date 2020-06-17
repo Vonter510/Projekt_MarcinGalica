@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Timers;
 
 namespace Projekt_MarcinGalica
 {
     class Gra
     {
-        static int[,] plansza;
+        static string[,] plansza;
         string nazwa_Gracza;
 
-        public Gra(int gracz, string nazwaGracza)
+        public Gra(string gracz, string nazwaGracza)
         {
             Gracz = gracz;
-            plansza = new int[3, 3];
+            plansza = new string[3, 3];
             NazwaGracza = nazwaGracza;
         }
-        public int Gracz { get; set; }
+        public string Gracz { get; set; }
 
         public string NazwaGracza
         {
@@ -48,10 +49,11 @@ namespace Projekt_MarcinGalica
             //sprawdzam czy graczem jest komputer
             if(NazwaGracza != "komputer")
             {
+                Console.WriteLine("Tura: " + NazwaGracza);
                 Console.WriteLine("Podaj miejsce w którym chcesz postawic symbol:");
-                Console.Write("Podaj rzad:");
+                Console.Write("Podaj rzad: ");
                 int.TryParse(Console.ReadLine().Trim(), out rzad);
-                Console.Write("Podaj kolumne");
+                Console.Write("Podaj kolumne: ");
                 int.TryParse(Console.ReadLine().Trim(), out kolumna);
             }
             else
@@ -68,9 +70,9 @@ namespace Projekt_MarcinGalica
                 {
                     Console.WriteLine("Podane kordy są nie poprawne.");
                     Console.WriteLine("Podaj miejsce w którym chcesz postawic symbol:");
-                    Console.Write("Podaj rzad:");
+                    Console.Write("Podaj rzad: ");
                     int.TryParse(Console.ReadLine().Trim(), out rzad);
-                    Console.Write("Podaj kolumne");
+                    Console.Write("Podaj kolumne: ");
                     int.TryParse(Console.ReadLine().Trim(), out kolumna);
                 }
                 else
@@ -94,7 +96,7 @@ namespace Projekt_MarcinGalica
                 }
                 else
                 {
-                    Console.WriteLine("Gratulacje wygrałeś"+NazwaGracza);
+                    Console.WriteLine("Gratulacje "+ NazwaGracza +" udało ci się wygrać!!!");
                 }
                 return true;
             }else if (remis())
@@ -149,7 +151,7 @@ namespace Projekt_MarcinGalica
             {
                 for(int kolumna = 0; kolumna <3; kolumna++)
                 {
-                    if(plansza[rzad,kolumna] != 1 && plansza[rzad, kolumna] != 2)
+                    if(plansza[rzad,kolumna] != "1" && plansza[rzad, kolumna] != "2")
                     {
                         return false;
                     }
@@ -166,7 +168,7 @@ namespace Projekt_MarcinGalica
             {
                 return false;
             }
-            if (plansza[rzad-1, kolumna-1] != 1 && plansza[rzad-1,kolumna-1] != 2)
+            if (plansza[rzad-1, kolumna-1] != "X" && plansza[rzad-1,kolumna-1] != "O")
             {
                 poprawne = true;
             }
@@ -178,22 +180,37 @@ namespace Projekt_MarcinGalica
             {
                 for (int kolumna = 0; kolumna < 3; kolumna++)
                 {
-                    plansza[rzad, kolumna] = 0;
+                    plansza[rzad, kolumna] = "0";
                 }
             }
             pokazPlansze();
         }
         private static void pokazPlansze()
         {
+            Console.WriteLine("  | 1  2  3 ");
+            Console.WriteLine("------------");
             for (int rzad = 0; rzad < 3; rzad++)
             {
+                Console.Write((rzad + 1).ToString() + " |");
                 for (int kolumna = 0; kolumna < 3; kolumna++)
                 {
-                    Console.Write(plansza[rzad, kolumna] + " ");
+                    switch (plansza[rzad, kolumna])
+                    {
+                        case "0":
+                            Console.Write(" - ");
+                            break;
+                        case "X":
+                            Console.Write(" X ");
+                            break;                      
+                        case "O":
+                            Console.Write(" O ");
+                            break;
+
+                    }
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("-----");
+            Console.WriteLine("------------");
         }
         }
     }
