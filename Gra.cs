@@ -57,7 +57,10 @@ namespace Projekt_MarcinGalica
             else
             {
                 rzad = rand1.Next(1, 4);    //komuter losuje rzad
-                kolumna = rand2.Next(1, 4);     //komputer losuje kolumne
+                for(int i = 0; i < 5000; i++)
+                {
+                    kolumna = rand2.Next(1, 4);     //komputer losuje kolumne
+                }
             }
             while (!sprawdzPlansze(rzad, kolumna))
             {
@@ -72,8 +75,11 @@ namespace Projekt_MarcinGalica
                 }
                 else
                 {
-                    rzad = rand1.Next(1, 4);
-                    kolumna = rand2.Next(1, 4);
+                    rzad = rand1.Next(1, 4);    //komuter losuje rzad
+                    for (int i = 0; i < 5000; i++)
+                    {
+                        kolumna = rand2.Next(1, 4);     //komputer losuje kolumne
+                    }
                 }
             }
 
@@ -156,7 +162,7 @@ namespace Projekt_MarcinGalica
         private bool sprawdzPlansze(int rzad, int kolumna)
         {
             bool poprawne = false;
-            if(rzad > 3 || kolumna > 3)
+            if(rzad > 3 || kolumna > 3 || rzad < 1 || kolumna < 1)
             {
                 return false;
             }
