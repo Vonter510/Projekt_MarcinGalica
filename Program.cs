@@ -11,7 +11,10 @@ namespace Projekt_MarcinGalica
             bool CzyGraSkonczona = false;
             while (start)
             {
+                CzyGraSkonczona = false;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Kołko i Krzyżyk");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Wybierz opcje gry:");
                 Console.WriteLine("1 - Gracz vs Gracz");
                 Console.WriteLine("2 - Gracz vs Komputer");
@@ -43,17 +46,13 @@ namespace Projekt_MarcinGalica
                                 {
                                     Console.WriteLine("Gra skończona");
                                 }
-                                else if (Console.ReadKey(true).Key == ConsoleKey.F1)
-                                {
-                                    CzyGraSkonczona = false;
-                                }
                                 else
                                 {
                                     CzyGraSkonczona = false;
                                 }
                             }
+                            Console.Clear();
                         }
-                        Console.Clear();
                         break;
                     case "2":
                         Console.Write("Podaj nazwe Gracza 1:");
@@ -75,18 +74,14 @@ namespace Projekt_MarcinGalica
                                 if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                                 {
                                     Console.WriteLine("Gra skończona");
-                                }
-                                else if (Console.ReadKey(true).Key == ConsoleKey.F1)
-                                {
-                                    CzyGraSkonczona = false;
-                                }
+                                } 
                                 else
                                 {
                                     CzyGraSkonczona = false;
                                 }
                             }
+                            Console.Clear();
                         }
-                        Console.Clear();
                         break;
                     case "3":
                         nazwaGracza = "komputer";
@@ -107,24 +102,22 @@ namespace Projekt_MarcinGalica
                                 {
                                     Console.WriteLine("Gra skończona");
                                 }
-                                else if (Console.ReadKey(true).Key == ConsoleKey.F1)
-                                {
-                                    CzyGraSkonczona = false;
-                                }
                                 else
                                 {
                                     CzyGraSkonczona = false;
                                 }
                             }
+                            Console.Clear();
                         }
-                        Console.Clear();
                         break;
                     case "4":
                         start = false;
                         break;
                     default:
                         Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Zła wartość");
+                        Console.ResetColor();
                         Console.WriteLine("Wybierz ponownie:");
                         break;
                 }

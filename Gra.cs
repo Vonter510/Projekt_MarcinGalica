@@ -70,8 +70,9 @@ namespace Projekt_MarcinGalica
             {
                 if(NazwaGracza != "komputer")
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Podane kordy są nie poprawne lub pole jest zajęte. Wybierz ponownie!");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Podane kordy są nie poprawne.");
                     Console.WriteLine("Podaj miejsce w którym chcesz postawic symbol:");
                     Console.Write("Podaj rzad: ");
                     int.TryParse(Console.ReadLine().Trim(), out rzad);
@@ -99,7 +100,7 @@ namespace Projekt_MarcinGalica
                     Console.WriteLine("Komputer wygrał!!!");
                     Console.ResetColor();
                     Console.WriteLine("ESC - Wróć do Menu");
-                    Console.WriteLine("F1 - Nowa tura skonczona");
+                    Console.WriteLine("Dowolny Klawisz - Zagraj ponownie");
                 }
                 else
                 {
@@ -107,20 +108,21 @@ namespace Projekt_MarcinGalica
                     Console.WriteLine("Gratulacje "+ NazwaGracza +" udało ci się wygrać!!!");
                     Console.ResetColor();
                     Console.WriteLine("ESC - Wróć do Menu");
-                    Console.WriteLine("F1 - Nowa tura skonczona");
+                    Console.WriteLine("Dowolny Klawisz - Zagraj ponownie");
                 }
                 return true;
             }else if (remis())
             {
-                Console.WriteLine("!!!REMIS!!!");
-                Console.ResetColor();
-                Console.WriteLine("ESC - Wróć do Menu");
-                Console.WriteLine("F1 - Nowa tura skonczona");
-                return true;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("!!!REMIS!!!");
+                    Console.ResetColor();
+                    Console.WriteLine("ESC - Wróć do Menu");
+                    Console.WriteLine("Dowolny Klawisz - Zagraj ponownie");
+                    return true;
             }
             return false;
         }
-        private bool zwyciestwo()
+        private bool zwyciestwo()       //Zasady zwycięstwa
         {
             //sprawdza po rządzie
             if(plansza[0,0] == Gracz && plansza[0,1] == Gracz && plansza[0,2] == Gracz)
@@ -159,13 +161,13 @@ namespace Projekt_MarcinGalica
             }
             return false;
         }
-        private bool remis()
+        private bool remis()    //Zasady remisu
         {
             for(int rzad = 0; rzad < 3; rzad++)
             {
                 for(int kolumna = 0; kolumna <3; kolumna++)
                 {
-                    if(plansza[rzad,kolumna] != "1" && plansza[rzad, kolumna] != "2")
+                    if(plansza[rzad,kolumna] != "X" && plansza[rzad, kolumna] != "O")
                     {
                         return false;
                     }
@@ -188,7 +190,7 @@ namespace Projekt_MarcinGalica
             }
             return poprawne;
         }
-        public static void inicjacjaPlanszy()
+        public static void inicjacjaPlanszy()       //inicjowanie planszy
         {
             for (int rzad = 0; rzad < 3; rzad++)
             {
@@ -199,9 +201,10 @@ namespace Projekt_MarcinGalica
             }
             pokazPlansze();
         }
-        private static void pokazPlansze()
+        private static void pokazPlansze()      // Tworzenie planszy
         {
             Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("------------");
             Console.WriteLine("  | 1  2  3 ");
             Console.WriteLine("------------");
             Console.ForegroundColor = ConsoleColor.White;
@@ -218,16 +221,21 @@ namespace Projekt_MarcinGalica
                             Console.Write(" - ");
                             break;
                         case "X":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(" X ");
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;                      
                         case "O":
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write(" O ");
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
 
                     }
                 }
                 Console.WriteLine();
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("------------");
         }
         }
